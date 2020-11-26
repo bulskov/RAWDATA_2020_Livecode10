@@ -8,6 +8,8 @@
             postman.publish('changeCategory', category);
         }
 
+        postman.publish('changeCategory', selectedCategory());
+
         ds.getCategories(function (data) { categories(data) });
 
         return {
