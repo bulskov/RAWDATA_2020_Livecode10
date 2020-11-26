@@ -1,10 +1,9 @@
 ﻿define(['knockout', 'dataservice', 'postman'], (ko, ds, postman) => {
     return function (params) {
         let categories = ko.observableArray([]);
-        let selectedCategory = ko.observable();
+        let selectedCategory = params.selectedCategory;
 
         let selectCategory = category => {
-            console.log(category);
             selectedCategory(category);
             postman.publish('changeCategory', category);
         }

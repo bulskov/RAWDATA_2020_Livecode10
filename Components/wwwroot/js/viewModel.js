@@ -1,15 +1,14 @@
 ﻿define(['knockout', 'dataservice'], (ko, ds) => {
-    let selectedComponent = ko.observable('category-details');
-    let currentParams = ko.observable();
+    let selectedComponent = ko.observable('category-list');
+    let selectedCategory = ko.observable();
+    let currentParams = ko.observable({ selectedCategory });
 
     let changeContent = () => {
         if (selectedComponent() === "category-list") {
-            ds.getCategory(1,
-                function(category) {
-                    currentParams({ category });
-                    selectedComponent('category-details');
-                });
+            currentParams({ category: selectedCategory });
+            selectedComponent('category-details');
         } else {
+            currentParams({ selectedCategory });
             selectedComponent('category-list');
         }
     }
