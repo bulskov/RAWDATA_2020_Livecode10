@@ -5,11 +5,12 @@
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Knockout Components</h1>
+<h1>Knockout Components</h1>
 
-<category-list></category-list>
+<button data-bind="click: changeContent">Change Content</button>
 
-<category-details params=""></category-details>
+
+<div data-bind="component: {name: selectedComponent, params: currentParams}"></div>
 
 <script data-main="js/main.js" src="js/lib/require.js/require.min.js"></script>
 </body>

@@ -3,7 +3,8 @@
     paths: {
         knockout: "lib/knockout/knockout-latest.debug",
         text: "lib/require-text/text.min",
-        dataservice: "services/dataService"
+        dataservice: "services/dataService",
+        postman: "services/postman"
     }
 });
 
@@ -27,6 +28,6 @@ require(['knockout', 'text'], (ko) => {
 });
 
 
-require(['knockout'], (ko) => {
-    ko.applyBindings({});
+require(['knockout', 'viewModel'], (ko, vm) => {
+    ko.applyBindings(vm);
 });
