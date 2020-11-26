@@ -1,3 +1,5 @@
-﻿<div class="border">
-    <div data-bind="text: category().name"></div>
+﻿<div class="border" data-bind="with: category">
+    <div >
+        <div data-bind="text: name"></div>
+    </div>
 </div>

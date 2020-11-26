@@ -1,5 +1,9 @@
 ﻿<div class="border">
     <ul data-bind="foreach: categories">
-        <li data-bind="text: name"></li>
+        <li data-bind="text: name, click: $parent.selectCategory"></li>
     </ul>
+    <div>
+        <category-details params="category: selectedCategory"></category-details>
+    </div>
 </div>
+
