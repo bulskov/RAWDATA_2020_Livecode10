@@ -1,14 +1,12 @@
-﻿define(['knockout', 'dataservice', 'postman'], (ko, ds, postman) => {
+﻿define(['knockout', 'dataservice', 'store'], (ko, ds, store) => {
     return function (params) {
         let categories = ko.observableArray([]);
-        let selectedCategory = params.selectedCategory;
+        let selectedCategory = ko.observable(store.getState().selectedCategory);
 
         let selectCategory = category => {
             selectedCategory(category);
-            postman.publish('changeCategory', category);
+            store.dispatch(store.actions.changeCategory(category));
         }
-
-        postman.publish('changeCategory', selectedCategory());
 
         ds.getCategories(function (data) { categories(data) });
 

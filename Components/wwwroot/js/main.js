@@ -4,7 +4,8 @@
         knockout: "lib/knockout/knockout-latest.debug",
         text: "lib/require-text/text.min",
         dataservice: "services/dataService",
-        postman: "services/postman"
+        postman: "services/postman",
+        store: "services/store"
     }
 });
 
@@ -28,6 +29,7 @@ require(['knockout', 'text'], (ko) => {
 });
 
 
-require(['knockout', 'viewModel'], (ko, vm) => {
+require(['knockout', 'viewModel', 'store'], (ko, vm, store) => {
+    store.subscribe(() => console.log(JSON.stringify(store.getState())));
     ko.applyBindings(vm);
 });

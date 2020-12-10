@@ -1,21 +1,19 @@
-﻿define(['knockout', 'dataservice', 'postman'], (ko, ds, postman) => {
+﻿define(['knockout', 'store'], (ko, store) => {
     let selectedComponent = ko.observable('category-list');
-    let selectedCategory = ko.observable();
-    let currentParams = ko.observable({ selectedCategory });
+    let currentParams = ko.observable();
 
     let changeContent = () => {
         if (selectedComponent() === "category-list") {
-            currentParams({ category: selectedCategory });
-            selectedComponent('category-details');
-            postman.publish('changeCategory', selectedCategory());
+            store.dispatch(store.actions.currentComponent('category-details'));
         } else {
-            currentParams({ selectedCategory });
-            selectedComponent('category-list');
+            store.dispatch(store.actions.currentComponent('category-list'));
         }
     }
 
-    postman.subscribe('changeCategory', selectedCategory);
+    store.dispatch(store.actions.currentComponent("category-list"));
+    store.subscribe(() => selectedComponent(store.getState().currentComponent));
 
+    
     return {
         selectedComponent,
         currentParams,

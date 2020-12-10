@@ -1,8 +1,9 @@
-﻿define(['knockout', 'dataservice', 'postman'], (ko, ds, postman) => {
+﻿define(['knockout', 'store'], (ko, store) => {
     return function (params) {
-        let category = ko.observable();
+        let category = ko.observable(store.getState().selectedCategory);
         
-        postman.subscribe('changeCategory', category);
+        store.subscribe(() => category(store.getState().selectedCategory));
+
 
         return {
             category
